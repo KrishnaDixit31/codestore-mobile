@@ -1,5 +1,19 @@
 # Welcome to your Expo app 👋
 
+<!-- <Pressable
+  style={({ pressed }) => [styles.card, pressed && { opacity: 0.85, transform: [{ scale: 0.98 }] }]}
+  android_ripple={{ color: theme.border }}
+> -->
+
+<!--in HomeScreen Search Memoization
+ const filteredData = useMemo(() => {
+  return snippets?.filter((item) => {
+    const matchesSearch = item.title.toLowerCase().includes(search.toLowerCase());
+    const matchesLanguage = selectedLanguage === "All" || item.language === selectedLanguage;
+    return matchesSearch && matchesLanguage;
+  });
+}, [snippets, search, selectedLanguage]); -->
+
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
 ## Get started

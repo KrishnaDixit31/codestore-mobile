@@ -1,16 +1,33 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import React from 'react';
-import { useColorScheme } from 'react-native';
+import { Stack } from "expo-router";
+import { useEffect } from "react";
+import { useAppFonts } from "../constants/theme";
+import { ThemeProvider, useTheme } from "../context/ThemeContext";
+import { createTable } from "@/store/database";
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+export default function RootLayout() {
+  const [fontsLoaded] = useAppFonts();
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  useEffect(() => {
+    createTable();
+  }, []);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
+    <ThemeProvider>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          animation: "fade",
+          animationDuration: 250,
+        }}
+      >
+        <Stack.Screen name="SplashScreen" options={{ animation: "fade" }} />
+        <Stack.Screen name="OnboardingScreen" options={{ animation: "fade" }} />
+        <Stack.Screen name="(home-stack)" options={{ animation: "fade" }} />
+      </Stack>
     </ThemeProvider>
   );
 }
