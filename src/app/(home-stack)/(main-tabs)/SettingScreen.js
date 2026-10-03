@@ -28,7 +28,13 @@ const SettingScreen = () => {
       </View>
 
       <View style={styles.card}>
-        <Pressable style={styles.cardItems}>
+        <Pressable
+          style={({ pressed }) => [
+            styles.cardItems,
+            pressed && { opacity: 0.7 },
+          ]}
+          onPress={() => setDarkMode(!isDark)}
+        >
           <Ionicons name="moon" size={26} color={theme.textSecondary} />
           <Text style={styles.itemTitle}>Dark Mode</Text>
           <Switch
@@ -43,7 +49,12 @@ const SettingScreen = () => {
           />
         </Pressable>
         <View style={styles.divider}></View>
-        <Pressable style={styles.cardItems}>
+        <Pressable
+          style={({ pressed }) => [
+            styles.cardItems,
+            pressed && { opacity: 0.7, transform: [{ scale: 0.99 }] },
+          ]}
+        >
           <Ionicons name="color-palette" size={26} color={theme.error} />
           <Text style={styles.itemTitle}>Accent Color</Text>
           <Ionicons
@@ -53,7 +64,13 @@ const SettingScreen = () => {
           />
         </Pressable>
         <View style={styles.divider}></View>
-        <Pressable style={styles.cardItems} onPress={clearData}>
+        <Pressable
+          style={({ pressed }) => [
+            styles.cardItems,
+            pressed && { opacity: 0.7, transform: [{ scale: 0.99 }] },
+          ]}
+          onPress={clearData}
+        >
           <Ionicons name="trash-outline" size={26} color={theme.error} />
           <Text style={styles.itemTitle}>Clear All Data</Text>
           <Ionicons

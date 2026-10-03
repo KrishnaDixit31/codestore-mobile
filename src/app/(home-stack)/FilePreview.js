@@ -125,7 +125,10 @@ const FilePreview = () => {
         <Pressable
           onPress={() => router.back()}
           hitSlop={10}
-          style={styles.back}
+          style={({ pressed }) => [
+            styles.back,
+            pressed && { opacity: 0.6, transform: [{ scale: 0.9 }] },
+          ]}
         >
           <Ionicons name="chevron-back" size={24} color={theme.text} />
         </Pressable>
@@ -146,7 +149,13 @@ const FilePreview = () => {
             resizeMode="contain"
           />
         ) : isPdf ? (
-          <Pressable onPress={() => handlePdf()} style={styles.pdfPlaceholder}>
+          <Pressable
+            onPress={() => handlePdf()}
+            style={({ pressed }) => [
+              styles.pdfPlaceholder,
+              pressed && { opacity: 0.8, transform: [{ scale: 0.98 }] },
+            ]}
+          >
             <Ionicons
               name="document-text-outline"
               size={64}
@@ -167,7 +176,11 @@ const FilePreview = () => {
           accessibilityRole="button"
           accessibilityLabel="Delete file"
           onPress={handleDelete}
-          style={[styles.actionButton, styles.deleteButton]}
+          style={({ pressed }) => [
+            styles.actionButton,
+            styles.deleteButton,
+            pressed && { opacity: 0.7, transform: [{ scale: 0.96 }] },
+          ]}
         >
           <Ionicons name="trash-outline" size={20} color={theme.error} />
           <Text style={styles.deleteText}>Delete</Text>
@@ -176,7 +189,11 @@ const FilePreview = () => {
           accessibilityRole="button"
           accessibilityLabel="Share file"
           onPress={handleShare}
-          style={[styles.actionButton, styles.shareButton]}
+          style={({ pressed }) => [
+            styles.actionButton,
+            styles.shareButton,
+            pressed && { opacity: 0.7, transform: [{ scale: 0.96 }] },
+          ]}
         >
           <Ionicons name="share-outline" size={20} color={theme.text} />
           <Text style={styles.shareText}>Share</Text>
@@ -186,7 +203,11 @@ const FilePreview = () => {
             accessibilityRole="button"
             accessibilityLabel="Edit file"
             onPress={handleEdit}
-            style={[styles.actionButton, styles.editButton]}
+            style={({ pressed }) => [
+              styles.actionButton,
+              styles.editButton,
+              pressed && { opacity: 0.85, transform: [{ scale: 0.96 }] },
+            ]}
           >
             <Ionicons name="create-outline" size={20} color="#fff" />
             <Text style={styles.editText}>Edit</Text>

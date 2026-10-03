@@ -59,7 +59,10 @@ const FavoriteScreen = () => {
   const cards = (item) => {
     return (
       <Pressable
-        style={styles.card}
+        style={({ pressed }) => [
+          styles.card,
+          pressed && { opacity: 0.85, transform: [{ scale: 0.98 }] },
+        ]}
         onPress={() =>
           router.push({
             pathname: "/DetailSnippet",
@@ -93,7 +96,10 @@ const FavoriteScreen = () => {
           </View>
         </View>
         <Pressable
-          style={styles.starContainer}
+          style={({ pressed }) => [
+            styles.starContainer,
+            pressed && { opacity: 0.6, transform: [{ scale: 1.2 }] },
+          ]}
           onPress={() => callFavorite(item.id, item.isFavorite)}
         >
           <Ionicons

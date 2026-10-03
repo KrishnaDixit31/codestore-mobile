@@ -101,7 +101,10 @@ const DetailSnippet = () => {
         <Pressable
           onPress={() => router.back()}
           hitSlop={10}
-          style={styles.headerBack}
+          style={({ pressed }) => [
+            styles.headerBack,
+            pressed && { opacity: 0.6, transform: [{ scale: 0.9 }] },
+          ]}
         >
           <Ionicons name="chevron-back" size={24} color={theme.text} />
         </Pressable>
@@ -136,7 +139,10 @@ const DetailSnippet = () => {
               <Text style={styles.cardTitle}>{snippetData?.title}</Text>
             </View>
             <Pressable
-              style={styles.starContainer}
+              style={({ pressed }) => [
+                styles.starContainer,
+                pressed && { opacity: 0.6, transform: [{ scale: 1.2 }] },
+              ]}
               onPress={() =>
                 snippetData &&
                 callFavorite(snippetData.id, snippetData.isFavorite)
@@ -162,7 +168,14 @@ const DetailSnippet = () => {
 
           <View style={styles.output}>
             <Text style={styles.outputText}>{snippetData.codeSnippet}</Text>
-            <Pressable onPress={handleCopy} hitSlop={8} style={styles.copyIcon}>
+            <Pressable
+              onPress={handleCopy}
+              hitSlop={8}
+              style={({ pressed }) => [
+                styles.copyIcon,
+                pressed && { opacity: 0.6, transform: [{ scale: 0.92 }] },
+              ]}
+            >
               <Ionicons
                 name={copied ? "checkmark" : "copy-outline"}
                 size={20}
@@ -173,7 +186,10 @@ const DetailSnippet = () => {
 
           <View style={styles.card}>
             <Pressable
-              style={styles.cardItems}
+              style={({ pressed }) => [
+                styles.cardItems,
+                pressed && { opacity: 0.7, transform: [{ scale: 0.99 }] },
+              ]}
               onPress={() =>
                 router.push({
                   pathname: "/EditSnippet",
@@ -191,7 +207,10 @@ const DetailSnippet = () => {
             </Pressable>
             <View style={styles.divider}></View>
             <Pressable
-              style={styles.cardItems}
+              style={({ pressed }) => [
+                styles.cardItems,
+                pressed && { opacity: 0.7, transform: [{ scale: 0.99 }] },
+              ]}
               onPress={() => handleDelete(snippetData.id)}
             >
               <Ionicons name="trash" size={26} color={theme.error} />

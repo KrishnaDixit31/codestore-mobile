@@ -77,7 +77,10 @@ const CreateScreen = () => {
             <Text style={styles.title}>Language</Text>
 
             <Pressable
-              style={styles.input}
+              style={({ pressed }) => [
+                styles.input,
+                pressed && { opacity: 0.8, transform: [{ scale: 0.99 }] },
+              ]}
               onPress={() => setShowDropdown((visible) => !visible)}
             >
               <Text
@@ -102,7 +105,13 @@ const CreateScreen = () => {
                 {languages.map((item) => (
                   <Pressable
                     key={item}
-                    style={styles.option}
+                    style={({ pressed }) => [
+                      styles.option,
+                      pressed && {
+                        opacity: 0.7,
+                        backgroundColor: theme.primaryLight,
+                      },
+                    ]}
                     onPress={() => {
                       setLanguage(item);
                       setShowDropdown(false);
@@ -141,7 +150,10 @@ const CreateScreen = () => {
         </ScrollView>
 
         <Pressable
-          style={styles.saveButton}
+          style={({ pressed }) => [
+            styles.saveButton,
+            pressed && { opacity: 0.85, transform: [{ scale: 0.98 }] },
+          ]}
           onPress={handleSave}
         >
           <Ionicons name="save-outline" size={20} color="#fff" />

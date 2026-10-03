@@ -27,10 +27,16 @@ const onboardingScreen = () => {
       <Text style={styles.title}>Your Code Companion</Text>
 
       <Text style={styles.subtitle}>
-        Save code snippets, manage files and get AI explanations. All offline on
-        your device.
+        Save code snippets, manage files, and build your offline developer
+        knowledge vault. Everything stays on your device.
       </Text>
-      <Pressable style={styles.btnStyle} onPress={handleGetStarted}>
+      <Pressable
+        style={({ pressed }) => [
+          styles.btnStyle,
+          pressed && { opacity: 0.85, transform: [{ scale: 0.98 }] },
+        ]}
+        onPress={handleGetStarted}
+      >
         <View style={styles.btnContent}>
           <Text style={styles.btnText}>Get Started</Text>
           <Ionicons

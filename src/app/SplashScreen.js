@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import DevSnippetsLogo from "../components/DevSnippetsLogo";
 import SplashWaves from "../components/SplashWaves";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 import { useTheme } from "@/context/ThemeContext";
 
@@ -10,14 +10,25 @@ const SplashScreen = () => {
   const { theme } = useTheme();
   const router = useRouter();
   const styles = style(theme);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    let active = true;
+    const startTime = Date.now();
+    const progressInterval = setInterval(() => {
+      setProgress(Math.min(((Date.now() - startTime) / 2000) * 100, 100));
+    }, 16);
+
     const startApp = async () => {
       // Wait for 2 seconds
       await new Promise((resolve) => setTimeout(resolve, 2000));
+      clearInterval(progressInterval);
+      if (!active) return;
+      setProgress(100);
 
       // Check whether onboarding was completed
       const completed = await AsyncStorage.getItem("onboardingCompleted");
+      if (!active) return;
 
       if (completed === "true") {
         // Returning user
@@ -29,7 +40,12 @@ const SplashScreen = () => {
     };
 
     startApp();
-  }, []);
+
+    return () => {
+      active = false;
+      clearInterval(progressInterval);
+    };
+  }, [router]);
 
   return (
     <View style={styles.container}>
@@ -39,12 +55,12 @@ const SplashScreen = () => {
       <Text style={styles.text}>
         Code<Text style={{ color: theme.primary }}>Store</Text>
       </Text>
-      <Text style={styles.subtext}>Your Personal Code Library.</Text>
+      <Text style={styles.subtext}>Offline Developer Knowledge Vault</Text>
       <View style={styles.bottomWaves}>
         <SplashWaves theme={theme} />
       </View>
       <View style={styles.progressBackground}>
-        <View style={styles.progress}></View>
+        <View style={[styles.progress, { width: `${progress}%` }]} />
       </View>
     </View>
   );
@@ -96,7 +112,6 @@ const style = (theme) =>
       backgroundColor: "#C7D3CA",
     },
     progress: {
-      width: 80,
       height: 4,
       borderRadius: 10,
       backgroundColor: "#527965",

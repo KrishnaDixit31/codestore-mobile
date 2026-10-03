@@ -124,7 +124,10 @@ const FileManagerScreen = () => {
   const cards = (item) => {
     return (
       <Pressable
-        style={styles.card}
+        style={({ pressed }) => [
+          styles.card,
+          pressed && { opacity: 0.85, transform: [{ scale: 0.98 }] },
+        ]}
         onPress={() =>
           router.push({
             pathname: "/FilePreview",
@@ -164,14 +167,26 @@ const FileManagerScreen = () => {
       <View style={styles.headerContainer}>
         <Text style={styles.headerTitle}>File Manager</Text>
         <View style={styles.headerBtn}>
-          <Pressable onPress={handleCreate} hitSlop={12}>
+          <Pressable
+            style={({ pressed }) => [
+              pressed && { opacity: 0.6, transform: [{ scale: 0.92 }] },
+            ]}
+            onPress={handleCreate}
+            hitSlop={12}
+          >
             <Ionicons
               name="add-circle-outline"
               size={28}
               color={theme.textSecondary}
             />
           </Pressable>
-          <Pressable onPress={handlePickFile} hitSlop={12}>
+          <Pressable
+            style={({ pressed }) => [
+              pressed && { opacity: 0.6, transform: [{ scale: 0.92 }] },
+            ]}
+            onPress={handlePickFile}
+            hitSlop={12}
+          >
             <Ionicons name="download-outline" size={28} color={theme.primary} />
           </Pressable>
         </View>

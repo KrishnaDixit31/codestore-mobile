@@ -73,7 +73,10 @@ const HomeScreen = () => {
   const cards = (item) => {
     return (
       <Pressable
-        style={styles.card}
+        style={({ pressed }) => [
+          styles.card,
+          pressed && { opacity: 0.85, transform: [{ scale: 0.98 }] },
+        ]}
         onPress={() =>
           route.push({
             pathname: "/DetailSnippet",
@@ -107,7 +110,10 @@ const HomeScreen = () => {
           </View>
         </View>
         <Pressable
-          style={styles.starContainer}
+          style={({ pressed }) => [
+            styles.starContainer,
+            pressed && { opacity: 0.6, transform: [{ scale: 1.2 }] },
+          ]}
           onPress={() => callFavorite(item.id, item.isFavorite)}
         >
           <Ionicons
@@ -172,7 +178,10 @@ const HomeScreen = () => {
           />
         </View>
         <Pressable
-          style={styles.filterContainer}
+          style={({ pressed }) => [
+            styles.filterContainer,
+            pressed && { opacity: 0.75, transform: [{ scale: 0.94 }] },
+          ]}
           onPress={() => setShowDropdown((visible) => !visible)}
         >
           <Ionicons
@@ -187,7 +196,13 @@ const HomeScreen = () => {
             {languages.map((item) => (
               <Pressable
                 key={item}
-                style={styles.option}
+                style={({ pressed }) => [
+                  styles.option,
+                  pressed && {
+                    opacity: 0.7,
+                    backgroundColor: theme.primaryLight,
+                  },
+                ]}
                 onPress={() => {
                   setSelectedLanguage(item);
                   setShowDropdown(false);

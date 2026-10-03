@@ -1,6 +1,9 @@
 import { Stack } from "expo-router";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function RootLayout() {
+  const { theme } = useTheme();
+
   return (
     <Stack
       screenOptions={{
@@ -8,6 +11,7 @@ export default function RootLayout() {
         animation: "slide_from_right",
         animationDuration: 280,
         gestureEnabled: true,
+        contentStyle: { backgroundColor: theme.background },
       }}
     >
       <Stack.Screen

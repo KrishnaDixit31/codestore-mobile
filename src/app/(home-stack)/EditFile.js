@@ -41,7 +41,14 @@ const EditFile = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
-        <Pressable onPress={handleBack} hitSlop={10} style={styles.headerBack}>
+        <Pressable
+          onPress={handleBack}
+          hitSlop={10}
+          style={({ pressed }) => [
+            styles.headerBack,
+            pressed && { opacity: 0.6, transform: [{ scale: 0.9 }] },
+          ]}
+        >
           <Ionicons name="chevron-back" size={24} color={theme.text} />
         </Pressable>
 
@@ -69,7 +76,13 @@ const EditFile = () => {
         />
       </View>
 
-      <Pressable style={styles.button} onPress={() => handleSave()}>
+      <Pressable
+        style={({ pressed }) => [
+          styles.button,
+          pressed && { opacity: 0.85, transform: [{ scale: 0.98 }] },
+        ]}
+        onPress={() => handleSave()}
+      >
         <Ionicons
           name="save-outline"
           size={20}
