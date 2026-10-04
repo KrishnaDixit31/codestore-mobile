@@ -70,6 +70,21 @@ const fileTypeStyle = {
   },
 };
 
+const fileExtensionStyle = {
+  txt: fileTypeStyle["text/plain"],
+  md: fileTypeStyle["text/markdown"],
+  json: fileTypeStyle["application/json"],
+  js: fileTypeStyle["text/javascript"],
+  ts: fileTypeStyle["text/typescript"],
+  html: fileTypeStyle["text/html"],
+  css: fileTypeStyle["text/css"],
+  py: fileTypeStyle["text/x-python"],
+  pdf: fileTypeStyle["application/pdf"],
+  png: fileTypeStyle["image/png"],
+  jpg: fileTypeStyle["image/jpeg"],
+  jpeg: fileTypeStyle["image/jpeg"],
+};
+
 const FileManagerScreen = () => {
   const { theme } = useTheme();
   const styles = style(theme);
@@ -122,6 +137,9 @@ const FileManagerScreen = () => {
   };
 
   const cards = (item) => {
+    const extension = item.name.split(".").pop()?.toLowerCase();
+    const typeStyle = fileTypeStyle[item.type] || fileExtensionStyle[extension];
+
     return (
       <Pressable
         style={({ pressed }) => [
@@ -139,14 +157,11 @@ const FileManagerScreen = () => {
           style={[
             styles.logo,
             {
-              backgroundColor:
-                fileTypeStyle[item.type]?.bgColor || theme.primary,
+              backgroundColor: typeStyle?.bgColor || theme.primary,
             },
           ]}
         >
-          <Text style={styles.logoText}>
-            {fileTypeStyle[item.type]?.shortName || "FILE"}
-          </Text>
+          <Text style={styles.logoText}>{typeStyle?.shortName || "FILE"}</Text>
         </View>
         <View style={styles.content}>
           <Text style={styles.cardTitle}>{item.name.split(".")[0]}</Text>

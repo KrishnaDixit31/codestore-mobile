@@ -4,9 +4,18 @@ CodeStore is an offline-first mobile app for developers to store, organize, and 
 
 ---
 
+## Demo
+
+<video src="./assets/videos/demo_video.mp4" controls width="220" height="400" autoplay muted playsinline>
+  Your browser does not support embedded videos. [Watch the CodeStore demo](./assets/videos/demo_video.mp4).
+</video>
+
+---
+
 ## Features
 
 ### Snippet Management
+
 - **Create & Edit Snippets**: Add code snippets with a title, programming language, comma-separated tags, and the code content.
 - **Language Badges & Filtering**: Filter snippets by language (JavaScript, TypeScript, React, React Native, Python) with color-coded language tags.
 - **Search**: Real-time search across snippet titles with instant memoized filtering.
@@ -15,6 +24,7 @@ CodeStore is an offline-first mobile app for developers to store, organize, and 
 - **Snippet Details**: Dedicated view screen showing formatted tags, code preview, language, and quick actions to edit or delete.
 
 ### File Management
+
 - **Create Local Code Files**: Create editable files directly in the app supporting `.js`, `.ts`, `.py`, `.html`, `.css`, `.json`, `.md`, and `.txt`.
 - **Edit & Preview Files**: View code and text files inside the app with line breaks preserved, or edit file contents on the go.
 - **Import from Device**: Pick existing PDF documents or images (`.png`, `.jpg`, `.jpeg`) from your device storage using the system document picker.
@@ -25,22 +35,26 @@ CodeStore is an offline-first mobile app for developers to store, organize, and 
 - **Native Sharing**: Share any stored file with external apps using the native share sheet.
 
 ### Local Storage Architecture
+
 - **SQLite (`expo-sqlite`)**: Handles structured data for snippets (titles, languages, code strings, tags, favorite state, timestamps) using SQL queries (`SELECT`, `INSERT`, `UPDATE`, `DELETE`).
 - **AsyncStorage (`@react-native-async-storage/async-storage`)**: Saves lightweight persistent preferences, specifically keeping track of the selected light or dark theme across app launches.
 - **FileSystem (`expo-file-system`)**: Uses Expo's modern object-oriented `File` and `Directory` APIs to create directories, read file contents, write code edits, copy imported assets from cache, and remove files.
 
 ### Theme & Styling
+
 - **Light & Dark Mode**: Full light and dark theme support with custom color tokens.
 - **Theme Persistence**: Remembers your theme choice between sessions via AsyncStorage.
 - **Custom Typography**: Styled with Google's Plus Jakarta Sans font family across headings, body text, and badges.
 
 ### Navigation Structure
+
 - Built with **Expo Router** using file-based routing:
   - **Root Stack**: Manages splash screen, onboarding, and the main home stack.
   - **Native Bottom Tabs**: Home, Favorites, Create, Files, and Settings powered by `expo-router/unstable-native-tabs`.
   - **Modal / Detail Screens**: Snippet details, snippet editor, file preview, and file editor screens open outside the tab bar with smooth transitions.
 
 ### User Experience
+
 - **Empty States**: Helpful illustrations and guidance text when search yields no matches, or when the snippet and file libraries are empty.
 - **Deletion Safeguards**: Confirmation dialogs before permanently deleting a file or resetting snippet data.
 - **Auto Refreshing**: Screens refresh automatically on focus using `useFocusEffect` whenever data changes.
@@ -49,23 +63,23 @@ CodeStore is an offline-first mobile app for developers to store, organize, and 
 
 ## Tech Stack
 
-| Technology | Purpose |
-| --- | --- |
-| **React Native** | Core mobile application framework |
-| **Expo** (SDK 55) | Development platform and native runtime tools |
-| **TypeScript** | Type definitions and tooling support |
-| **Expo Router** | File-based navigation and nested stack/tab routing |
-| **Native Tabs** | Platform-native bottom tab bar navigation |
-| **Expo SQLite** | Relational local database for structured snippet storage |
-| **AsyncStorage** | Persistent key-value storage for app theme preference |
-| **Expo FileSystem** | Reading, writing, copying, and organizing local files |
-| **Expo Document Picker** | Picking files and images from device storage |
-| **Expo Intent Launcher** | Launching Android's external PDF viewer |
-| **Expo Sharing** | Sharing files via the operating system's native share sheet |
-| **Expo Clipboard** | Copying code snippets directly to system clipboard |
-| **React Native Safe Area Context** | Handling notches, home bars, and safe margins |
-| **Ionicons (@expo/vector-icons)** | Consistent icon set across navigation and UI cards |
-| **Plus Jakarta Sans** | Modern typography via Expo Google Fonts |
+| Technology                         | Purpose                                                     |
+| ---------------------------------- | ----------------------------------------------------------- |
+| **React Native**                   | Core mobile application framework                           |
+| **Expo** (SDK 55)                  | Development platform and native runtime tools               |
+| **TypeScript**                     | Type definitions and tooling support                        |
+| **Expo Router**                    | File-based navigation and nested stack/tab routing          |
+| **Native Tabs**                    | Platform-native bottom tab bar navigation                   |
+| **Expo SQLite**                    | Relational local database for structured snippet storage    |
+| **AsyncStorage**                   | Persistent key-value storage for app theme preference       |
+| **Expo FileSystem**                | Reading, writing, copying, and organizing local files       |
+| **Expo Document Picker**           | Picking files and images from device storage                |
+| **Expo Intent Launcher**           | Launching Android's external PDF viewer                     |
+| **Expo Sharing**                   | Sharing files via the operating system's native share sheet |
+| **Expo Clipboard**                 | Copying code snippets directly to system clipboard          |
+| **React Native Safe Area Context** | Handling notches, home bars, and safe margins               |
+| **Ionicons (@expo/vector-icons)**  | Consistent icon set across navigation and UI cards          |
+| **Plus Jakarta Sans**              | Modern typography via Expo Google Fonts                     |
 
 ---
 
@@ -152,6 +166,7 @@ CodeStore/
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js (v18 or newer recommended)
 - npm or yarn
 - Expo Go on your physical Android/iOS device, or an Android Emulator / iOS Simulator
@@ -159,21 +174,25 @@ CodeStore/
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/KrishnaDixit31/codestore-mobile.git
    ```
 
 2. Navigate into the project folder:
+
    ```bash
    cd CodeStore
    ```
 
 3. Install dependencies:
+
    ```bash
    npm install
    ```
 
 4. Start the Expo development server:
+
    ```bash
    npx expo start
    ```
