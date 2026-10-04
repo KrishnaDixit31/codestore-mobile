@@ -6,9 +6,7 @@ CodeStore is an offline-first mobile app for developers to store, organize, and 
 
 ## Demo
 
-<video src="./assets/videos/demo_video.mp4" controls width="220" height="400" autoplay muted playsinline>
-  Your browser does not support embedded videos. [Watch the CodeStore demo](./assets/videos/demo_video.mp4).
-</video>
+<img src="./assets/videos/ demo_video.gif" height="450" controls></img>
 
 ---
 
